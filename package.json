@@ -1,0 +1,22 @@
+{
+  "name": "smart-charity",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "devDependencies": {
+    "truffle": "^5.1.52"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imollov/smart-charity.git"
+  },
+  "keywords": [],
+  "author": "Ivelin Mollov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imollov/smart-charity/issues"
+  },
+  "homepage": "https://github.com/imollov/smart-charity#readme"
+}
