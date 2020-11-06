@@ -5,6 +5,9 @@
   "scripts": {
     "test": "truffle test"
   },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.2.0"
+  },
   "devDependencies": {
     "truffle": "^5.1.52"
   },
