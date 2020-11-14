@@ -20,7 +20,7 @@
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-const { mnemonic, projectId } = require("./env.json");
+const { MNEMONIC, INFURA_PROJECT_ID } = require("./env.json");
 
 module.exports = {
   /**
@@ -59,8 +59,8 @@ module.exports = {
     ropsten: {
       provider: () =>
         new HDWalletProvider(
-          mnemonic,
-          `https://ropsten.infura.io/v3/${projectId}`
+          MNEMONIC,
+          `https://ropsten.infura.io/v3/${INFURA_PROJECT_ID}`
         ),
       network_id: 3, // Ropsten's id
       gas: 5500000, // Ropsten has a lower block limit than mainnet
