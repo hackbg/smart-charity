@@ -1,42 +1,26 @@
-pragma solidity >=0.4.22 <0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
+import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import "./Campaign.sol";
 
 contract CampaignFactory {
-    address[] public deployedCampaigns;
+    address[] private _deployedCampaigns;
 
-    event LogCreateCampaign(
-        address indexed _campaignAddress,
-        uint256 indexed _timestamp
-    );
+    event CampaignDeployed(address indexed campaign);
 
-    function createCampaign(
-        string memory _title,
-        string memory _description,
-        uint256 _targetAmount,
-        uint32 _endsTimestamp
-    ) 
-        public 
-    {
-        address newCampaign = address(
-            new Campaign(
-                _title,
-                _description,
-                _targetAmount,
-                _endsTimestamp,
-                msg.sender
-            )
-        );
-        deployedCampaigns.push(newCampaign);
-
-        emit LogCreateCampaign(newCampaign, block.timestamp);
+    function deployedCampaigns() public view returns (address[] memory) {
+        return _deployedCampaigns;
     }
 
-    function getDeployedCampaigns()
+    function createCampaign(
+        address payable wallet, IERC20 token, uint256 goal, uint256 openingTime, uint256 closingTime,
+        string memory title, string memory description
+    )
         public
-        view
-        returns (address[] memory)
     {
-        return deployedCampaigns;
+        Campaign campaign = new Campaign(wallet, token, goal, openingTime, closingTime, title, description, msg.sender);
+        _deployedCampaigns.push(address(campaign));
+        emit CampaignDeployed(address(campaign));
     }
 }
