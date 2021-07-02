@@ -1,29 +1,16 @@
 {
   "name": "smart-charity",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "test": "truffle test"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.2.0"
+    "@openzeppelin/contracts": "^4.1.0",
+    "@openzeppelin/test-environment": "^0.1.9",
+    "@openzeppelin/test-helpers": "^0.5.11",
+    "chai": "^4.3.4"
   },
-  "devDependencies": {
-    "@truffle/hdwallet-provider": "^1.2.0",
-    "chai": "^4.2.0",
-    "openzeppelin-test-helpers": "^0.5.1",
-    "truffle": "^5.1.52",
-    "truffle-assertions": "^0.9.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/imollov/smart-charity.git"
-  },
-  "keywords": [],
-  "author": "Ivelin Mollov",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/imollov/smart-charity/issues"
-  },
-  "homepage": "https://github.com/imollov/smart-charity#readme"
+  "author": "Ivelin Mollov"
 }
