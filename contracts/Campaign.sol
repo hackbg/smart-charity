@@ -9,6 +9,8 @@ contract Campaign is RefundableCrowdsale {
     address private _author;
     string private _title;
     string private _description;
+    address[] private _donors;
+    mapping (address => uint256) private _donorAmounts;
     uint private constant _rate = 1;
 
     constructor(
@@ -39,5 +41,19 @@ contract Campaign is RefundableCrowdsale {
 
     function description() public view returns (string memory) {
         return _description;
+    }
+
+    function donors() public view returns (address[] memory) {
+        return _donors;
+    }
+
+    function donorAmount(address donor) public view returns (uint256) {
+        return _donorAmounts[donor];
+    }
+
+    function _updatePurchasingState(address beneficiary, uint256 weiAmount) internal virtual override {
+        if (_donorAmounts[beneficiary] == 0) _donors.push(beneficiary);
+        _donorAmounts[beneficiary] += weiAmount;
+        super._updatePurchasingState(beneficiary, weiAmount);
     }
 }
