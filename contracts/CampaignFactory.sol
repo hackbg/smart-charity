@@ -8,7 +8,7 @@ contract CampaignFactory {
     address[] private _deployedCampaigns;
     ERC20Mintable private _token;
 
-    event CampaignDeployed(address indexed campaign);
+    event CampaignDeployed(address indexed campaignId);
 
     constructor() {
         _token = new ERC20Mintable("Smart Charity Token", "SCT");
@@ -28,9 +28,9 @@ contract CampaignFactory {
     )
         public
     {
-        Campaign campaign = new Campaign(wallet, _token, goal, openingTime, closingTime, title, description, msg.sender);
-        _deployedCampaigns.push(address(campaign));
-        _token.mint(address(campaign), goal);
-        emit CampaignDeployed(address(campaign));
+        address campaignId = address(new Campaign(wallet, _token, goal, openingTime, closingTime, title, description, msg.sender));
+        _deployedCampaigns.push(campaignId);
+        _token.mint(campaignId, goal);
+        emit CampaignDeployed(campaignId);
     }
 }
