@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../pages/Home.vue';
 import Campaign from '../pages/Campaign.vue';
 import Create from '../pages/Create.vue';
+import About from '../pages/About.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/campaign/:id',
     name: 'Campaign',
     component: Campaign,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   },
 ];
 
