@@ -6,7 +6,22 @@ import Campaign from '../../../../build/contracts/Campaign.json';
 
 export default {
   namespaced: true,
+  state: {
+    factoryContract: null,
+  },
+  mutations: {
+    setFactoryContract(state, payload) {
+      state.factoryContract = payload;
+    },
+  },
   actions: {
+    init({ commit }) {
+      const address = getNetworkAddress(CampaignFactory.networks);
+      if (address) {
+        const contract = new ethers.Contract(address, CampaignFactory.abi, getProvider());
+        commit('setFactoryContract', contract);
+      }
+    },
     async fetch(_, id) {
       const campaign = new ethers.Contract(id, Campaign.abi, getProvider());
       const [
@@ -55,13 +70,8 @@ export default {
         donors,
       };
     },
-    async fetchAll({ dispatch }) {
-      const campaignFactory = new ethers.Contract(
-        getNetworkAddress(CampaignFactory.networks),
-        CampaignFactory.abi,
-        getProvider()
-      );
-      const deployed = await campaignFactory.deployedCampaigns();
+    async fetchAll({ state, dispatch }) {
+      const deployed = await state.factoryContract.deployedCampaigns();
       const result = await Promise.all(deployed.map((campaignId) => dispatch('fetch', campaignId)));
       return result.sort((a, b) => a.openingDate < b.openingDate);
     },
@@ -80,14 +90,10 @@ export default {
       );
       return result;
     },
-    async create({ dispatch, rootState }, payload) {
+    async create({ state, dispatch, rootState }, payload) {
       const walletId = await dispatch('createWallet', payload.beneficiaries);
       const signer = getProvider().getSigner(rootState.ethers.address);
-      const campaignFactory = new ethers.Contract(
-        getNetworkAddress(CampaignFactory.networks),
-        CampaignFactory.abi,
-        signer
-      );
+      const campaignFactory = state.factoryContract.connect(signer);
       const openingTime = Math.floor(new Date().getTime() / 1000.0) + 5 * 60;
       const closingTime = Math.floor(payload.closing.getTime() / 1000.0);
       await campaignFactory.createCampaign(
