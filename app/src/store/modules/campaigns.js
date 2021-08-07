@@ -8,18 +8,23 @@ export default {
   namespaced: true,
   state: {
     factoryContract: null,
+    tokenAddress: null,
   },
   mutations: {
     setFactoryContract(state, payload) {
       state.factoryContract = payload;
     },
+    setTokenAddress(state, payload) {
+      state.tokenAddress = payload;
+    },
   },
   actions: {
-    init({ commit }) {
+    init({ commit, dispatch }) {
       const address = getNetworkAddress(CampaignFactory.networks);
       if (address) {
         const contract = new ethers.Contract(address, CampaignFactory.abi, getProvider());
         commit('setFactoryContract', contract);
+        dispatch('setTokenAddress');
       }
     },
     async fetch(_, id) {
@@ -89,6 +94,10 @@ export default {
         }))
       );
       return result;
+    },
+    async setTokenAddress({ state, commit }) {
+      const address = await state.factoryContract.token();
+      commit('setTokenAddress', address);
     },
     async create({ state, dispatch, rootState }, payload) {
       const walletId = await dispatch('createWallet', payload.beneficiaries);
