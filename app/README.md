@@ -1,4 +1,4 @@
-# app
+# smart-charity-app
 
 ## Project setup
 ```
