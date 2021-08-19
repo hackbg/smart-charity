@@ -2,19 +2,23 @@
   <div class="box" v-if="data">
     <div class="is-flex is-justify-content-space-between">
       <h1 class="title">{{ data.title }}</h1>
-      <b-button v-if="data.isOpen && !data.goalReached" @click="promptDonateDialog" type="is-info">
+      <b-button
+        v-if="data.isOpen && !data.goalReached"
+        @click="promptDonateDialog"
+        type="is-primary"
+      >
         <b-icon icon="donate" />
         <strong>Donate</strong>
       </b-button>
       <b-button
         v-else-if="!data.goalReached && data.hasClosed"
         @click="promptRefundDialog"
-        type="is-info"
+        type="is-primary"
       >
         <b-icon icon="donate" />
         <strong>Refund</strong>
       </b-button>
-      <b-button v-else-if="data.goalReached" @click="promptClaimFundsDialog" type="is-info">
+      <b-button v-else-if="data.goalReached" @click="promptClaimFundsDialog" type="is-primary">
         <b-icon icon="funnel-dollar" />
         <strong>Claim Funds</strong>
       </b-button>
@@ -61,7 +65,7 @@
         <beneficiary-table v-if="beneficiaries" :items="beneficiaries" />
       </b-tab-item>
       <b-tab-item label="Author">
-        <user-address truncate :address="data.author" />
+        <user-address :address="data.author" />
       </b-tab-item>
     </b-tabs>
   </div>

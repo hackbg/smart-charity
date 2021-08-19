@@ -1,11 +1,49 @@
 // Import Bulma's core
 @import '~bulma/sass/utilities/_all';
 
-// Set your colors
-$primary: #48c774;
+// Hack brand colors
+$primary: #832DF4;
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 $primary-invert: findColorInvert($primary);
+
+$info: #832DF4;
+$info-invert: findColorInvert($info);
+$info-light: findLightColor($info);
+$info-dark: findDarkColor($info);
+
+$success: #53D781;
+$success-invert: findColorInvert($success);
+$success-light: findLightColor($success);
+$success-dark: findDarkColor($success);
+
+$warning: #FBE055;
+$warning-invert: findColorInvert($warning);
+$warning-light: findLightColor($warning);
+$warning-dark: findDarkColor($warning);
+
+$danger: #FF2222;
+$danger-invert: findColorInvert($danger);
+$danger-light: findLightColor($danger);
+$danger-dark: findDarkColor($danger);
+
+$light: #D6DCE2;
+$light-invert: findColorInvert($light);
+$dark: #8898AA;
+$dark-invert: findColorInvert($dark);
+
+$black: #111111;
+
+$link: $primary;
+$link-invert: $primary-dark;
+$link-light: $primary-light;
+$link-dark: $primary-dark;
+$link-hover: #AC82EB;
+$link-visited: darken($primary, 30%);
+
+$input-border-color: $primary;
+$input-hover-border-color: $primary;
+$input-placeholder-color: $primary;
 
 // Lists and maps
 $custom-colors: null !default;
