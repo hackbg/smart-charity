@@ -1,11 +1,38 @@
 // Import Bulma's core
 @import '~bulma/sass/utilities/_all';
 
-// Set your colors
-$primary: #48c774;
+// Hack brand colors
+$primary: #832DF4;
+$info: #832DF4;
+$success: #53D781;
+$warning: #FBE055;
+$danger: #FF2222;
+$light: #D6DCE2;
+$dark: #8898AA;
+$black: #111111;
+
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 $primary-invert: findColorInvert($primary);
+$info-invert: findColorInvert($info);
+$info-light: findLightColor($info);
+$info-dark: findDarkColor($info);
+$success-invert: findColorInvert($success);
+$success-light: findLightColor($success);
+$success-dark: findDarkColor($success);
+$warning-invert: findColorInvert($warning);
+$warning-light: findLightColor($warning);
+$warning-dark: findDarkColor($warning);
+$danger-invert: findColorInvert($danger);
+$danger-light: findLightColor($danger);
+$danger-dark: findDarkColor($danger);
+$light-invert: findColorInvert($light);
+$dark-invert: findColorInvert($dark);
+
+$link: $primary;
+$link-invert: $primary-dark;
+$link-light: $primary-light;
+$link-dark: $primary-dark;
 
 // Lists and maps
 $custom-colors: null !default;
@@ -72,6 +99,23 @@ $colors: mergeColorMaps(
 
 // Custom
 $desktop: 760px + (2 * $gap);
+
+$link-hover: #AC82EB;
+$link-visited: darken($primary, 30%);
+
+$input-border-color: $primary;
+$input-hover-border-color: $primary;
+$input-placeholder-color: $primary;
+
+$section-padding-desktop: 1.5rem 1.5rem 3rem 1.5rem;
+
+$box-shadow: 0 0.5em 1em -0.125em rgba($dark, 0.2), 0 0px 0 1px rgba($dark, 0.05);
+
+$label-weight: 500;
+
+$modal-card-head-background-color: $light;
+
+$button-focus-box-shadow-size: 0;
 
 // Import Bulma and Buefy styles
 @import '~bulma';

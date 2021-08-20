@@ -1,5 +1,5 @@
 <template>
-  <b-tag rounded ellipsis class="user-address">
+  <b-tag rounded class="user-address">
     <span class="address" :title="address">
       <img :src="avatarUrl" class="img mr-1" />
       <template v-if="truncate">{{ address | truncate(10) }}</template>

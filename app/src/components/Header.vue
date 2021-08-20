@@ -1,20 +1,21 @@
 <template>
-  <header class="header has-background-primary">
-    <b-navbar class="container is-max-desktop" type="is-primary">
+  <header class="header">
+    <b-navbar class="container is-max-desktop">
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <logo />
         </b-navbar-item>
       </template>
       <template slot="start">
-        <b-navbar-item tag="router-link" to="/">Home</b-navbar-item>
-        <b-navbar-item tag="router-link" to="/about">About</b-navbar-item>
+        <b-navbar-item tag="router-link" to="/" class="has-text-primary">Home</b-navbar-item>
+        <b-navbar-item tag="router-link" to="/about" class="has-text-primary">About</b-navbar-item>
       </template>
       <template slot="end">
         <template v-if="connected">
           <b-navbar-item tag="div">
             <b-button
-              size="is-primary is-small"
+              inverted
+              size="is-small is-primary"
               icon-left="plus"
               @click="$router.push('/campaign/new')"
             >
@@ -22,11 +23,16 @@
             </b-button>
           </b-navbar-item>
           <b-navbar-item tag="div">
-            <user-address truncate :address="address" v-if="connected" />
+            <user-address
+              v-if="connected"
+              :address="address"
+              class="has-background-primary-light mt-1"
+              truncate
+            />
           </b-navbar-item>
         </template>
         <b-navbar-item tag="div" v-else>
-          <b-button size="is-light is-small" @click="connect">Connect Wallet</b-button>
+          <b-button size="is-primary is-small" @click="connect">Connect Wallet</b-button>
         </b-navbar-item>
       </template>
     </b-navbar>

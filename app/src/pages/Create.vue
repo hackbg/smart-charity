@@ -24,7 +24,7 @@
       <b-field label="Story">
         <b-input v-model="data.story" minlength="50" maxlength="800" type="textarea"></b-input>
       </b-field>
-      <b-field label="Target">
+      <b-field label="Target ETH">
         <b-input v-model="data.target" placeholder="Number" type="number" min="1"></b-input>
       </b-field>
       <b-field label="Closing">
@@ -42,8 +42,9 @@
         <label class="label">Beneficiaries</label>
         <b-button
           @click="beneficiaryModalOpen = true"
+          outlined
           type="is-small"
-          class="is-light"
+          class="is-primary"
           icon-left="plus"
         >
           Add
