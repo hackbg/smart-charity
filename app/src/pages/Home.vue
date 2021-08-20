@@ -3,10 +3,14 @@
     <preview v-for="item in items" :key="item.id" v-bind="item" />
   </div>
   <b-loading v-else-if="loading" is-full-page v-model="loading"></b-loading>
-  <div v-else-if="error">
-    <h1 class="title">Oops!</h1>
-    <p class="content">Something went wrong :(</p>
-  </div>
+  <b-message
+    v-else-if="error"
+    type="is-danger"
+    title="Oops!"
+    :closable="false"
+  >
+    Something went wrong :(
+  </b-message>
 </template>
 
 <script>
