@@ -2,9 +2,7 @@
 
 # smart-charity
 
-Decentralized crowdfunding platform for charity campaigns aiming at transparent collection and distribution of cryptocurrency donations. 
-
-![sample-campaign](screenshot.png)
+Decentralized crowdfunding platform for charity campaigns aiming at transparent collection and distribution of cryptocurrency donations.
 
 ## Overview
 
@@ -13,13 +11,18 @@ This repo includes Solidity smart contracts compatible with EVM-based blockchain
 It's built using standard and secure smart contract library [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) vetted by the awesome community.
 
 
-**Key components**
+**Smart Contracts**
 
-* Smart Charity Token (SCT)
-* Campaign Factory
+* Crowdfunding Campaign
+* Smart Charity Token
 * Campaign Wallet
+* Campaign Factory
 
 ⚠️ Smart contracts are not audited. Please do not use in production!
+
+**Client App**
+
+![sample-campaign](screenshot.png)
 
 ## Develop
 
