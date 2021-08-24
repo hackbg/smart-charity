@@ -3,12 +3,7 @@
     <preview v-for="item in items" :key="item.id" v-bind="item" />
   </div>
   <b-loading v-else-if="loading" is-full-page v-model="loading"></b-loading>
-  <b-message
-    v-else-if="error"
-    type="is-danger"
-    title="Oops!"
-    :closable="false"
-  >
+  <b-message v-else-if="error" type="is-danger" title="Oops!" :closable="false">
     Something went wrong :(
   </b-message>
 </template>
