@@ -7,9 +7,7 @@
       {{ props.row.reason }}
     </b-table-column>
     <b-table-column field="amount" label="Amount" v-slot="props">
-      <span class="tag is-success">
-        {{ props.row.amount }}
-      </span>
+      <span class="tag has-background-primary-light">{{ props.row.amount }} ETH</span>
     </b-table-column>
     <b-table-column field="address" label="Address" v-slot="props">
       <user-address truncate :address="props.row.address" />

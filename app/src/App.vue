@@ -3,15 +3,8 @@
     <app-header />
     <section class="section main">
       <div class="container is-max-desktop">
-        <div v-if="!ethereum">
-          <h1 class="title">No wallet found</h1>
-          <p class="content">Please install MetaMask or another Ethereum compatible wallet.</p>
-        </div>
-        <div v-else-if="!factoryContract && connected">
-          <h1 class="title">Not available on {{ network }}</h1>
-          <p class="content">Please switch to Ropsten Test Network.</p>
-        </div>
-        <router-view v-else-if="connected" />
+        <router-view v-if="connected && factoryContract" />
+        <wallet-connect v-else />
       </div>
     </section>
     <app-footer />
@@ -22,11 +15,11 @@
 import { mapState } from 'vuex';
 import AppHeader from '@/components/Header.vue';
 import AppFooter from '@/components/Footer.vue';
-import ethersConnect from './store/modules/ethers/ethersConnect';
+import WalletConnect from '@/components/WalletConnect.vue';
 
 export default {
   name: 'App',
-  components: { AppHeader, AppFooter },
+  components: { AppHeader, AppFooter, WalletConnect },
   created() {
     this.$store.dispatch('ethers/init');
     this.$store.watch(
@@ -35,9 +28,8 @@ export default {
     );
   },
   computed: {
-    ...mapState('ethers', ['connected', 'network']),
+    ...mapState('ethers', ['connected']),
     ...mapState('campaigns', ['factoryContract']),
-    ethereum: () => ethersConnect.getEthereum(),
   },
 };
 </script>

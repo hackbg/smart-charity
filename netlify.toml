@@ -1,0 +1,8 @@
+[build]
+  base = "app/"
+  publish = "dist/"
+  command = "npm run lint && npm run build"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

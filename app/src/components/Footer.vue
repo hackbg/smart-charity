@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer has-text-grey">
+  <footer class="footer has-text-dark has-background-light">
     <div class="content has-text-centered">
       <p>SmartCharity by <a href="https://hack.bg">hack</a>.</p>
       <p>

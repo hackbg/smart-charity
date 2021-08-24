@@ -1,6 +1,6 @@
 {
   "name": "smart-charity-app",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@hackbg/design-system": "0.0.1",
     "buefy": "^0.9.4",
     "core-js": "^3.6.5",
     "ethers": "^5.4.2",
