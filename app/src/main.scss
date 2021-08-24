@@ -1,15 +1,6 @@
 // Import Bulma's core
 @import '~bulma/sass/utilities/_all';
-
-// Hack brand colors
-$primary: #832DF4;
-$info: #832DF4;
-$success: #53D781;
-$warning: #FBE055;
-$danger: #FF2222;
-$light: #D6DCE2;
-$dark: #8898AA;
-$black: #111111;
+@import '@hackbg/design-system/dist/default';
 
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
