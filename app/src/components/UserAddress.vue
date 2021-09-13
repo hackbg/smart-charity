@@ -6,6 +6,9 @@
         <template v-if="truncate">{{ address | truncate(10) }}</template>
         <template v-else>{{ address }}</template>
       </a>
+      <a v-clipboard:success="clipboardSuccessHandler" v-clipboard="() => address">
+        <b-icon icon="clipboard" pack="far" />
+      </a>
     </span>
   </b-tag>
 </template>
@@ -25,6 +28,14 @@ export default {
     },
     explorerUrl() {
       return ethersConnect.getExplorerUrl() + 'address/' + this.address;
+    },
+  },
+  methods: {
+    clipboardSuccessHandler() {
+      this.$buefy.toast.open({
+        message: `The address is coppied`,
+        type: 'is-success',
+      });
     },
   },
 };
