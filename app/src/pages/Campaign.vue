@@ -145,7 +145,14 @@ export default {
     onDonateConfirm(value) {
       this.loading = true;
       this.donate({ id: this.campaignId, value })
-        .then(() => this.$buefy.toast.open(`Your donation of ${value} was successfuly completed`))
+        .then((tx) => {
+          this.$buefy.toast.open(
+            `Your donation of ${value} was sent. Please, wait for confirmation message...`
+          );
+          tx.wait().then(() =>
+            this.$buefy.toast.open(`Your donation of ${value} was successfuly completed`)
+          );
+        })
         .catch(this.toastError)
         .finally(() => {
           this.loading = false;
@@ -160,7 +167,10 @@ export default {
     onRefundConfirm() {
       this.loading = true;
       this.refund(this.campaignId)
-        .then(() => this.$buefy.toast.open('Refund completed'))
+        .then((tx) => {
+          this.$buefy.toast.open(`Your refund request was sent. Please, wait for confirmation...`);
+          tx.wait().then(() => this.$buefy.toast.open('Refund completed'));
+        })
         .catch(this.toastError)
         .finally(() => {
           this.loading = false;
@@ -175,7 +185,12 @@ export default {
     onClaimFundsConfirm() {
       this.loading = true;
       this.claimFunds(this.campaignId)
-        .then(() => this.$buefy.toast.open('Funds transferred'))
+        .then((tx) => {
+          this.$buefy.toast.open(
+            `Your transfer request was sent. Please, wait for confirmation...`
+          );
+          tx.wait().then(() => this.$buefy.toast.open('Funds transferred'));
+        })
         .catch(this.toastError)
         .finally(() => {
           this.loading = false;
