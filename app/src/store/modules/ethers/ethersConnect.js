@@ -76,6 +76,9 @@ export async function getNetName() {
 // get the explorer url of this network
 export function getExplorerUrl() {
   switch (chainId) {
+    case '0x1':
+    case '0x2':
+      return 'https://etherscan.io/';
     case '0x3':
       return 'https://ropsten.etherscan.io/';
     case '0x4':
@@ -84,13 +87,8 @@ export function getExplorerUrl() {
       return 'https://goerli.etherscan.io/';
     case '0x2a':
       return 'https://kovan.etherscan.io/';
-    case undefined:
-    case null:
-      return '';
-    case '0x1':
-    case '0x2':
     default:
-      return 'https://etherscan.io/';
+      return '';
   }
 }
 
