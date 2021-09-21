@@ -2,13 +2,20 @@
   <b-tag rounded class="user-address">
     <span class="address" :title="address">
       <img :src="avatarUrl" class="img mr-1" />
-      <template v-if="truncate">{{ address | truncate(10) }}</template>
-      <template v-else>{{ address }}</template>
+      <a target="_blank" :href="explorerUrl">
+        <template v-if="truncate">{{ address | truncate(10) }}</template>
+        <template v-else>{{ address }}</template>
+      </a>
+      <a v-clipboard:success="clipboardSuccessHandler" v-clipboard="() => address">
+        <b-icon icon="clipboard" pack="far" />
+      </a>
     </span>
   </b-tag>
 </template>
 
 <script>
+import ethersConnect from '@/store/modules/ethers/ethersConnect';
+
 export default {
   name: 'UserAddress',
   props: {
@@ -18,6 +25,17 @@ export default {
   computed: {
     avatarUrl() {
       return `https://avatars.dicebear.com/api/jdenticon/${this.address}.svg`;
+    },
+    explorerUrl() {
+      return ethersConnect.getExplorerUrl() + 'address/' + this.address;
+    },
+  },
+  methods: {
+    clipboardSuccessHandler() {
+      this.$buefy.toast.open({
+        message: `The address is coppied`,
+        type: 'is-success',
+      });
     },
   },
 };

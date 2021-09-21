@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import VueTruncate from 'vue-truncate-filter';
+import Clipboard from 'v-clipboard';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -16,6 +17,8 @@ Vue.use(Buefy, {
 });
 
 Vue.use(VueTruncate);
+
+Vue.use(Clipboard);
 
 new Vue({
   router,

@@ -73,6 +73,25 @@ export async function getNetName() {
   }
 }
 
+// get the explorer url of this network
+export function getExplorerUrl() {
+  switch (chainId) {
+    case '0x1':
+    case '0x2':
+      return 'https://etherscan.io/';
+    case '0x3':
+      return 'https://ropsten.etherscan.io/';
+    case '0x4':
+      return 'https://rinkeby.etherscan.io/';
+    case '0x5':
+      return 'https://goerli.etherscan.io/';
+    case '0x2a':
+      return 'https://kovan.etherscan.io/';
+    default:
+      return '';
+  }
+}
+
 // if this net has ens
 export async function hasEns() {
   return ENS_NETS.includes(chainId);
@@ -208,6 +227,7 @@ export default {
   getEthereum,
   ethereumOk,
   getNetName,
+  getExplorerUrl,
   hasEns,
   getProvider,
   getWallet,
