@@ -129,7 +129,7 @@ export default {
     },
     async donate(_, { id, value }) {
       const userWallet = getWallet();
-      await userWallet.sendTransaction({
+      return userWallet.sendTransaction({
         to: id,
         value: ethers.utils.parseEther(value),
       });
@@ -138,7 +138,7 @@ export default {
       await dispatch('finalize', id);
       const signer = getProvider().getSigner(rootState.ethers.address);
       const campaign = new ethers.Contract(id, Campaign.abi, signer);
-      await campaign.claimRefund(rootState.ethers.address);
+      return campaign.claimRefund(rootState.ethers.address);
     },
     async claimFunds({ dispatch, rootState }, id) {
       await dispatch('finalize', id);
@@ -146,7 +146,7 @@ export default {
       const campaign = new ethers.Contract(id, Campaign.abi, signer);
       const walletId = await campaign.wallet();
       const campaignWallet = new ethers.Contract(walletId, CampaignWallet.abi, signer);
-      await campaignWallet.release(rootState.ethers.address);
+      return campaignWallet.release(rootState.ethers.address);
     },
     async finalize({ rootState }, id) {
       const signer = getProvider().getSigner(rootState.ethers.address);
